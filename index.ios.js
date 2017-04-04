@@ -14,6 +14,20 @@ import {
   Image
 } from 'react-native';
 
+class Nav extends Component {
+  render() {
+    return(
+      <View style={{flex:1, flexDirection: 'row', marginTop: 20}}>
+        <View style={{width: 125, height: 44, backgroundColor: 'teal'}} />
+        <View style={{width: 125, height: 44, backgroundColor: 'skyblue'}} />
+        <View style={{width: 125, height: 44, backgroundColor: 'powderblue'}} />
+
+      </View>
+    );
+  }
+}
+
+
 class Logo extends Component {
   render(){
     let pic = {
@@ -21,7 +35,7 @@ class Logo extends Component {
     };
 
     return (
-        <Image source={pic} style={{width: 375, height: 100, marginTop: 20}}/>
+        <Image source={pic} style={{width: 375, height: 100, marginTop: 44}}/>
     );
   }
 }
@@ -45,6 +59,7 @@ export default class AwesomeProject extends Component {
     let rides = [ride1, ride2];
     return (
       <View>
+        <Nav />
         <Logo />
         <View className="ridesContainer">
           <LyftCars className="lyftRides" rides={rides} />
@@ -66,7 +81,7 @@ class LyftCars extends Component {
 
 
     return (
-      <View >
+      <View>
         {list}
       </View>
     );
@@ -126,6 +141,7 @@ const styles = StyleSheet.create({
   lyftContainer: {
     marginTop: 20,
   },
+
   rideType: {
     fontSize: 20,
     fontWeight: 'bold',
