@@ -49,7 +49,7 @@ export default class AwesomeProject extends Component {
       // <LyftCar car={ride1} />
       <LyftCars rides={rides} />
       // <PrintLyft />
-    )
+    );
   }
 }
 
@@ -59,7 +59,7 @@ class LyftCars extends Component {
 
     this.props.rides.forEach(ride => (
       list.push(<LyftCar car={ride} />)
-    ))
+    ));
 
 
 
@@ -79,7 +79,7 @@ class LyftCar extends Component {
         <Text>${this.props.car.price}</Text>
         <Text>{this.props.car.eta} minutes</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -103,8 +103,8 @@ class LyftCar extends Component {
 class Greeting extends Component {
   render(){
     return (
-      <Text>Hello, {this.props.name}!</Text>
-    )
+      <Text>Hi, {this.props.name}!</Text>
+    );
   }
 }
 
@@ -116,7 +116,7 @@ class LotsOfGreetings extends Component {
         <Greeting name='Jaina' />
         <Greeting name='Valeera' />
       </View>
-    )
+    );
   }
 }
 
