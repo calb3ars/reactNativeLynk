@@ -6,26 +6,58 @@
 
 import React, { Component } from 'react';
 // import "github.com/lyft/lyft-go-sdk/lyft";
+import MapView from 'react-native-maps';
 import {
   AppRegistry,
+  Button,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
   Image
 } from 'react-native';
+
+class Map extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <MapView style={styles.map}
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      </View>
+    );
+  }
+}
 
 class Nav extends Component {
   render() {
     return(
       <View style={{flex:1, flexDirection: 'row', marginTop: 20}}>
-        <View style={{width: 125, height: 44, backgroundColor: 'teal'}} />
-        <View style={{width: 125, height: 44, backgroundColor: 'skyblue'}} />
-        <View style={{width: 125, height: 44, backgroundColor: 'powderblue'}} />
+        <View style={{flex: 1, height: 44, backgroundColor: 'teal'}}><Text>Map</Text></View>
+        <View style={{flex: 1, height: 44, backgroundColor: 'skyblue'}}><Text>Results</Text></View>
+        <View style={{flex: 1, height: 44, backgroundColor: 'powderblue'}}><Text>Help</Text></View>
 
       </View>
     );
   }
 }
+
+
+// fetch('uri', {
+//   method: 'GET',
+//   headers: {
+//
+//   },
+//   body: {
+//
+//   }
+// });
+
 
 
 class Logo extends Component {
@@ -58,13 +90,26 @@ export default class AwesomeProject extends Component {
 
     let rides = [ride1, ride2];
     return (
+
       <View>
         <Nav />
         <Logo />
         <View className="ridesContainer">
           <LyftCars className="lyftRides" rides={rides} />
         </View>
+        <MapView style={styles.map}
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+          }}
 
+          showsUserLocation={true}
+
+          />
+        <Button title="Find your Ride" color="#FF00BF" accessibilityLabel="Book your ride" disabled={true}/>
+        <TouchableOpacity disabled={true}><Text>Find your Ride</Text></TouchableOpacity>
       </View>
     );
   }
@@ -122,7 +167,6 @@ class LyftCar extends Component {
 //   }
 // }
 
-
 // const requestRides = (lat,long) => (
 //   $.ajax({
 //     method: 'GET'
@@ -157,7 +201,14 @@ const styles = StyleSheet.create({
     fontSize: 80,
     fontWeight: '200',
     justifyContent: 'center',
-    alignSelf: 'center',
+    alignSelf: 'center'
+  },
+  map: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
   }
 
 });
