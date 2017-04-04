@@ -19,9 +19,9 @@ class Logo extends Component {
     let pic = {
       uri: 'https://2ecyvk3piszv4e6gv2yz9867-wpengine.netdna-ssl.com/wp-content/uploads/2015/07/uber-and-lyft-side-by-side.png'
     };
-    debugger;
+
     return (
-      <Image source={pic} style={{width: 193, height: 110, marginTop: 20}}/>
+        <Image source={pic} style={{width: 375, height: 100, marginTop: 20}}/>
     );
   }
 }
@@ -44,12 +44,14 @@ export default class AwesomeProject extends Component {
 
     let rides = [ride1, ride2];
     return (
-      // <Logo />
-      // <LotsOfGreetings />
-      // <LyftCar car={ride1} />
-      <LyftCars rides={rides} />
-      // <PrintLyft />
-    )
+      <View>
+        <Logo />
+        <View className="ridesContainer">
+          <LyftCars className="lyftRides" rides={rides} />
+        </View>
+
+      </View>
+    );
   }
 }
 
@@ -59,12 +61,12 @@ class LyftCars extends Component {
 
     this.props.rides.forEach(ride => (
       list.push(<LyftCar car={ride} />)
-    ))
+    ));
 
 
 
     return (
-      <View style={{alignItems: 'center', marginTop: 20}}>
+      <View >
         {list}
       </View>
     );
@@ -74,12 +76,17 @@ class LyftCars extends Component {
 class LyftCar extends Component {
   render(){
     return (
-      <View style={{marginTop: 20}}>
-        <Text>{this.props.car.rideType}</Text>
-        <Text>${this.props.car.price}</Text>
-        <Text>{this.props.car.eta} minutes</Text>
+      <View style={[styles.lyft, styles.lyftContainer]}>
+        <Text style={[styles.lyft,styles.row1, styles.rideType]}>{this.props.car.rideType}</Text>
+        <Text style={[styles.lyft, styles.row2]}>
+          <Text style={[styles.lyft, styles.lyftArrow]}>&laquo;</Text>
+          <Text style={[styles.lyft, styles.price]}>${this.props.car.price.toFixed(2)}</Text>
+
+
+        </Text>
+        <Text style={[styles.lyft, styles.row3, styles.eta]}>eta: {this.props.car.eta} minutes</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -100,25 +107,6 @@ class LyftCar extends Component {
 //   }
 // }
 
-class Greeting extends Component {
-  render(){
-    return (
-      <Text>Hello, {this.props.name}!</Text>
-    )
-  }
-}
-
-class LotsOfGreetings extends Component {
-  render(){
-    return (
-      <View style={{alignItems: 'center', marginTop: 20}}>
-        <Greeting name='Rexxar' />
-        <Greeting name='Jaina' />
-        <Greeting name='Valeera' />
-      </View>
-    )
-  }
-}
 
 // const requestRides = (lat,long) => (
 //   $.ajax({
@@ -127,6 +115,36 @@ class LotsOfGreetings extends Component {
 //     data: ()
 //   })
 // )
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  lyftContainer: {
+    marginTop: 20,
+  },
+  rideType: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  row2: {
+    color: '#FF00BF',
+  },
+
+  price: {
+    fontSize: 48,
+  },
+  lyftArrow: {
+    fontSize: 80,
+    fontWeight: '200',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  }
+
+});
 
 
 
